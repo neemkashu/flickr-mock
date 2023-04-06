@@ -4,8 +4,7 @@
   "description": "server-json",
   "main": "index.js",
   "scripts": {
-    "start": "node index.mjs",
-    "dev": "json-server --watch ./src/db.json"
+    "start": "node index.mjs"
   },
   "repository": {
     "type": "git",

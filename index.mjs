@@ -1,7 +1,7 @@
 import pkg from 'json-server';
 const { create, router, defaults } = pkg;
 const server = create()
-const JSrouter = router('./src/db.json')
+const JSrouter = router('db.json')
 const middlewares = defaults()
 
 server.use(middlewares)
