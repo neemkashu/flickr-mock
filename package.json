@@ -1,0 +1,22 @@
+{
+  "name": "flickr-mock",
+  "version": "1.0.0",
+  "description": "server-json",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neemkashu/flickr-mock.git"
+  },
+  "author": "neemkashu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/neemkashu/flickr-mock/issues"
+  },
+  "homepage": "https://github.com/neemkashu/flickr-mock#readme",
+  "devDependencies": {
+    "json-server": "^0.17.3"
+  }
+}
