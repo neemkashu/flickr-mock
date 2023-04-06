@@ -4,13 +4,14 @@
   "description": "server-json",
   "main": "index.js",
   "scripts": {
-    "start": "node index",
+    "start": "node index.mjs",
     "dev": "json-server --watch ./src/db.json"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/neemkashu/flickr-mock.git"
   },
+  "type": "module",
   "author": "neemkashu",
   "license": "ISC",
   "bugs": {
