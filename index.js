@@ -6,8 +6,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const request_1 = __importDefault(require("request"));
 const dotenv_1 = __importDefault(require("dotenv"));
+const cors_1 = __importDefault(require("cors"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
+app.use((0, cors_1.default)({ origin: 'http://127.0.0.1:5173/' }));
 app.get('/', (req, res) => {
     var _a;
     const url = 'https://api.flickr.com/services/rest';
@@ -23,12 +25,6 @@ app.get('/', (req, res) => {
         }
         res.send(body);
     });
-});
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-    next();
 });
 app.listen(8080, '0.0.0.0', () => {
     console.log(`Server started on port ${8080}`);

@@ -1,9 +1,11 @@
 import express from 'express';
 import request from 'request';
 import dotenv from 'dotenv';
+import cors from 'cors';
 
 dotenv.config();
 const app = express();
+app.use(cors({origin: 'http://127.0.0.1:5173/'}))
 
 app.get('/', (req, res) => {
     const url = 'https://api.flickr.com/services/rest';
@@ -22,12 +24,6 @@ app.get('/', (req, res) => {
 
         res.send(body);
     });
-});
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-    next();
 });
 app.listen(8080, '0.0.0.0', () => {
     console.log(`Server started on port ${8080}`);
