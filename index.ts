@@ -5,7 +5,7 @@ import cors from 'cors';
 
 dotenv.config();
 const app = express();
-app.use(cors({origin: 'http://localhost:5173/'}))
+app.use(cors({origin: 'http://localhost:5173'}))
 
 app.get('/', (req, res) => {
     const url = 'https://api.flickr.com/services/rest';
