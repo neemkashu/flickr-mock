@@ -9,7 +9,7 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const cors_1 = __importDefault(require("cors"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
-app.use((0, cors_1.default)({ origin: 'http://127.0.0.1:5173/' }));
+app.use((0, cors_1.default)({ origin: 'http://localhost:5173/' }));
 app.get('/', (req, res) => {
     var _a;
     const url = 'https://api.flickr.com/services/rest';
