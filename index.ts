@@ -23,7 +23,7 @@ app.get("/", (req, res) => {
   apiUrl.search = apiParam.toString();
   const origin = req.get("origin");
 
-  console.log(origin, "ORIGIN");
+  console.debug(origin, "ORIGIN");
 
   request.get(apiUrl.toString(), (err, response, body) => {
     if (err) {
@@ -32,9 +32,9 @@ app.get("/", (req, res) => {
     }
 
     if (origin === allowedOrigins[3]) {
-      res.header("Access-Control-Allow-Origin", allowedOrigins[3]);
+      res.header("access-control-allow-origin", allowedOrigins[3]);
     } else if (origin === allowedOrigins[2]) {
-      res.header("Access-Control-Allow-Origin", allowedOrigins[2]);
+      res.header("access-control-allow-origin", allowedOrigins[2]);
     }
 
     res.send(body);
