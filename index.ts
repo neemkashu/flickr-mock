@@ -8,10 +8,23 @@ const app = express();
 
 const allowedOrigins = [
   /^https?:\/\/deploy-preview-\d+--dancing-toffee-80fbd4\.netlify\.app$/,
-  "https://dancing-toffee-80fbd4.netlify.app/",
+  "https://dancing-toffee-80fbd4.netlify.app",
+  "https://deploy-preview-9--dancing-toffee-80fbd4.netlify.app",
   "http://localhost:5173",
 ];
-app.use(cors({ origin: allowedOrigins }));
+app.use((req, res, next) => {
+  const origin = req.get("origin");
+  if (origin === allowedOrigins[3]) {
+    res.header("Access-Control-Allow-Origin", allowedOrigins[3]);
+  } else if (origin === allowedOrigins[2]) {
+    res.header("Access-Control-Allow-Origin", allowedOrigins[2]);
+  }
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
 
 app.get("/", (req, res) => {
   const url = "https://api.flickr.com/services/rest";
