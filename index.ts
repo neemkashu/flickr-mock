@@ -12,19 +12,6 @@ const allowedOrigins = [
   "https://deploy-preview-9--dancing-toffee-80fbd4.netlify.app",
   "http://localhost:5173",
 ];
-app.use((req, res, next) => {
-  const origin = req.get("origin");
-  if (origin === allowedOrigins[3]) {
-    res.header("Access-Control-Allow-Origin", allowedOrigins[3]);
-  } else if (origin === allowedOrigins[2]) {
-    res.header("Access-Control-Allow-Origin", allowedOrigins[2]);
-  }
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
 
 app.get("/", (req, res) => {
   const url = "https://api.flickr.com/services/rest";
@@ -34,11 +21,20 @@ app.get("/", (req, res) => {
   const apiParam = new URLSearchParams(apiUrl.searchParams);
   apiParam.append("api_key", process.env.API_KEY ?? "");
   apiUrl.search = apiParam.toString();
+  const origin = req.get("origin");
+
+  console.log(origin, "ORIGIN");
 
   request.get(apiUrl.toString(), (err, response, body) => {
     if (err) {
       console.error(err);
       return res.status(500).send(`Internal server error: ${err}`);
+    }
+
+    if (origin === allowedOrigins[3]) {
+      res.header("Access-Control-Allow-Origin", allowedOrigins[3]);
+    } else if (origin === allowedOrigins[2]) {
+      res.header("Access-Control-Allow-Origin", allowedOrigins[2]);
     }
 
     res.send(body);
