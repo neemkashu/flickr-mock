@@ -9,7 +9,6 @@ const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const allowedOrigins = [
-    /^https?:\/\/deploy-preview-\d+--dancing-toffee-80fbd4\.netlify\.app$/,
     "https://dancing-toffee-80fbd4.netlify.app",
     "https://deploy-preview-9--dancing-toffee-80fbd4.netlify.app",
     "http://localhost:5173",
@@ -25,19 +24,15 @@ app.get("/", (req, res) => {
     const apiParam = new URLSearchParams(apiUrl.searchParams);
     apiParam.append("api_key", (_a = process.env.API_KEY) !== null && _a !== void 0 ? _a : "");
     apiUrl.search = apiParam.toString();
-    const origin = req.get("origin");
-    console.debug(origin, "ORIGIN");
+    const originIncome = req.get("origin");
+    console.debug(originIncome, "ORIGIN");
     request_1.default.get(apiUrl.toString(), (err, response, body) => {
         if (err) {
             console.error(err);
             return res.status(500).send(`Internal server error: ${err}`);
         }
-        if (origin === allowedOrigins[3]) {
-            res.header("access-control-allow-origin", allowedOrigins[3]);
-        }
-        else if (origin === allowedOrigins[2]) {
-            res.header("access-control-allow-origin", allowedOrigins[2]);
-        }
+        const allowedOrigin = allowedOrigins.find((value) => value === originIncome);
+        res.header("access-control-allow-origin", allowedOrigin);
         res.send(body);
     });
 });
