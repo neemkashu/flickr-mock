@@ -11,6 +11,7 @@ const allowedOrigins = [
   "https://dancing-toffee-80fbd4.netlify.app",
   "https://deploy-preview-9--dancing-toffee-80fbd4.netlify.app",
   "http://localhost:5173",
+  "http://localhost:8080",
 ];
 
 app.get("/", (req, res) => {

@@ -13,6 +13,7 @@ const allowedOrigins = [
     "https://dancing-toffee-80fbd4.netlify.app",
     "https://deploy-preview-9--dancing-toffee-80fbd4.netlify.app",
     "http://localhost:5173",
+    "http://localhost:8080",
 ];
 app.get("/", (req, res) => {
     var _a;
@@ -23,17 +24,17 @@ app.get("/", (req, res) => {
     apiParam.append("api_key", (_a = process.env.API_KEY) !== null && _a !== void 0 ? _a : "");
     apiUrl.search = apiParam.toString();
     const origin = req.get("origin");
-    console.log(origin, "ORIGIN");
+    console.debug(origin, "ORIGIN");
     request_1.default.get(apiUrl.toString(), (err, response, body) => {
         if (err) {
             console.error(err);
             return res.status(500).send(`Internal server error: ${err}`);
         }
         if (origin === allowedOrigins[3]) {
-            res.header("Access-Control-Allow-Origin", allowedOrigins[3]);
+            res.header("access-control-allow-origin", allowedOrigins[3]);
         }
         else if (origin === allowedOrigins[2]) {
-            res.header("Access-Control-Allow-Origin", allowedOrigins[2]);
+            res.header("access-control-allow-origin", allowedOrigins[2]);
         }
         res.send(body);
     });
