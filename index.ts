@@ -11,6 +11,9 @@ const allowedOrigins = [
   "https://dancing-toffee-80fbd4.netlify.app",
   "https://deploy-preview-9--dancing-toffee-80fbd4.netlify.app",
   "http://localhost:5173",
+  "http://localhost:5173/",
+  "http://localhost:8080",
+  "http://localhost:8080/",
 ];
 
 app.get("/", (req, res) => {
@@ -40,6 +43,6 @@ app.get("/", (req, res) => {
     res.send(body);
   });
 });
-app.listen(8080, "0.0.0.0", () => {
-  console.log(`Server started on port ${8080}`);
+app.listen(6106, "0.0.0.0", () => {
+  console.log(`Server started on port ${6106}`);
 });
